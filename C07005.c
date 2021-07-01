@@ -1,34 +1,26 @@
 #include<stdio.h>
 #include<math.h>
 
-typedef struct Point{
-	int x,y;
-} Point;
-
-int kiem_tra_tam_giac(float a, float b, float c){
-	if(a + b > c && a + c > b && b + c > a) return 1;
-	else return 0; 
-}
-
 void bai_lam(){
-	Point a,b,c;
-	scanf("%d%d", &a.x, &a.y);
-	scanf("%d%d", &b.x, &b.y);
-	scanf("%d%d", &c.x, &c.y);
-	
-	float _a = (float) sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
-	float _b = (float) sqrt(pow(a.x - c.x, 2) + pow(a.y - c.y, 2));
-	float _c = (float) sqrt(pow(c.x - b.x, 2) + pow(c.y - b.y, 2));
-	
-	int kq = kiem_tra_tam_giac(_a,_b,_c);
-	
-	if(kq == 0) printf("INVALID\n");
-	else printf("%.3f\n", (double) _a + _c + _b);
+	double x1, y1, x2, y2, x3, y3;
+    scanf("%lf%lf%lf%lf%lf%lf", &x1, &y1, &x2, &y2, &x3, &y3);
+    
+    double a = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+    double b = sqrt((x2 - x3) * (x2 - x3) + (y2 - y3) * (y2 - y3));
+    double c = sqrt((x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3));
+    
+    if ((a + b) > c && (b + c) > a && (c + a) > b)
+        printf("%.3lf", a + b + c);
+    else
+        printf("INVALID");
+    printf("\n");
 }
 
-int main(){
-	int a; scanf("%d", &a);
-	while(a--){
-		bai_lam();
+int main()
+{
+    int a; scanf("%d", &a);
+    while(a--){
+    	bai_lam();
 	}
+    return 0;
 }
