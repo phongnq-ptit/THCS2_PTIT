@@ -1,44 +1,50 @@
-#include<stdio.h>
-#include<math.h>
-#include<string.h>
-#include<stdlib.h>
+#include <stdio.h>
 
 void bai_lam(){
-	int n,m,i,j;
-	scanf("%d", &n);
-	int len = 2*n - 1;
-	int arr[len][len];
-	memset(arr, 0, sizeof(arr));
-	m = len;
-	int len_copy = len;
-	
-	int hang = 0, cot = 0, temp = n;
-	while(hang < len && cot < m){
-		for(j = hang; j < m; j++) arr[hang][j] = temp;
-		hang++;
-		for(j = hang; j < len; j++) arr[j][m - 1] = temp; 
-		m--;
-		if(hang < len){
-			for(j = m - 1; j >= cot; j--) arr[len - 1][j] = temp;
-			len--;
-		}
-		if(cot < m){
-			for(j = len - 1; j >= hang; j--) arr[j][cot] = temp;
-			cot++;
-		}
-		--temp;
-	}
-	
-	for(i = 0; i < len_copy; i++){
-		for(j = 0; j < len_copy; j++) printf("%d ", arr[i][j]);
-		printf("\n");
-	}
+	int n, i, j;
+    scanf("%d", &n);
+    int l = 1, r = 2 * n - 1;
+    for (i = 1; i <= n; i++){
+        int a = n;
+        for (j = 1; j <= 2 * n - 1; j++){
+            if (j < l){
+                printf("%d", a);
+                a--;
+            }
+            else if (j >= r){
+                printf("%d", a);
+                a++;
+            }
+            else
+                printf("%d", a);
+        }
+        l++;
+        r--;
+        printf("\n");
+    }
+    l -= 2;
+    r += 2;
+    for (i = 2; i <= n; i++){
+        int a = n;
+        for (j = 1; j <= 2 * n - 1; j++){
+            if (j < l){
+                printf("%d", a);
+                a--;
+            }
+            else if (j >= r){
+                printf("%d", a);
+                a++;
+            }
+            else
+                printf("%d", a);
+        }
+        l--;
+        r++;
+        printf("\n");
+    }
 }
 
 int main(){
-	//int a; scanf("%d", &a);
-	//while(a--){
-		bai_lam();
-	//}
-	return 0;
+    bai_lam();
+    return 0;
 }
